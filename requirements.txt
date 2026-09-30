@@ -1,13 +1,21 @@
+# Core deep learning
+torch
+torchvision
+
+# Numerical and image processing
+numpy
+Pillow
+scipy
+opencv-python
+
+# Visualization
+matplotlib
+
+# INTR dependencies
 cython
 submitit
-torch>=1.5.0
-torchvision>=0.6.0
-scipy
+pycocotools
 onnx
 onnxruntime
-pycocotools
-seaborn
-opencv-python
-matplotlib
 transformers
 timm==0.9.0
