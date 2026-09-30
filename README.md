@@ -326,20 +326,53 @@ The repository also contains development and diagnostic scripts used throughout 
 
 Large datasets and model checkpoints are not included in this repository.
 
-To reproduce the experiments:
+### Required Files
 
-1. Download the **CUB-200-2011** dataset.
-2. Obtain the pretrained INTR CUB checkpoint.
-3. Place the required files according to the paths expected by the experiment scripts.
-4. Install dependencies:
+Download CUB-200-2011 and place the extracted dataset at:
 
-```bash
-pip install -r requirements.txt
+```text
+data/CUB_200_2011/
 ```
 
-5. Run the relevant scripts in `src/` for fine-tuning, robustness evaluation, and analysis.
+The directory should contain the official CUB metadata files and the `images/` directory.
+
+Place the pretrained INTR CUB checkpoint at:
+
+```text
+checkpoints/intr_checkpoint_cub_detr_r50.pth
+```
+
+### Training λ0 and V1
+
+The paired fine-tuning control (λ0) can be reproduced with:
+
+```bash
+python src/full_finetune.py --seed 42 --lambda-attn 0
+```
+
+The V1 attention-consistency model can be reproduced with:
+
+```bash
+python src/full_finetune.py --seed 42 --lambda-attn 0.01
+```
+
+The final experiments use seeds 42, 43, and 44.
+
+The training configurations used in the reported experiments are defined in `src/full_finetune.py` and `src/full_finetune_teacher_anchor.py`, including the number of training epochs and optimizer settings.
 
 The frozen evaluation cohorts are provided in `metadata/`, and the reported experiment outputs are provided in `results/`.
+
+### Training V2
+
+The V2 teacher-anchored attention-consistency model can be reproduced with:
+
+```bash
+python src/full_finetune_teacher_anchor.py --seed 42 --lambda-attn 0.01 --beta-anchor 0.0015
+```
+
+V2 initializes both the student and the frozen teacher from the same pretrained INTR checkpoint. The training objective combines the paired classification loss, attention-consistency loss, and teacher-anchor loss.
+
+As with λ0 and V1, the final experiments use seeds 42, 43, and 44.
 
 ---
 
