@@ -1,0 +1,42 @@
+# Python environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Dataset
+data/CUB_200_2011/
+
+# Model checkpoints / weights
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+
+# Temporary / local Kaggle files
+kaggle_output/
+kaggle/
+working/
+
+# Temporary experiment artifacts
+*.tmp
+*.log
+
+# Packaging / cache
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
