@@ -109,16 +109,16 @@ We compare the pretrained INTR model with three fine-tuning variants.
 
 The model is fine-tuned using paired original and background-blurred images, but without an attention consistency objective.
 
-\[
+$$
 L_{\mathrm{cls}}
 =
 \frac{1}{2}
 \left[
-CE(z(x),y)
+\mathrm{CE}(z(x), y)
 +
-CE(z(\tilde{x}),y)
+\mathrm{CE}(z(\tilde{x}), y)
 \right]
-\]
+$$
 
 This controls for the effect of paired perturbation training itself.
 
@@ -126,27 +126,23 @@ This controls for the effect of paired perturbation training itself.
 
 V1 adds a consistency objective between the class-query attention maps of the original and blurred images:
 
-\[
+$$
 L_{\mathrm{cons}}
 =
-1-\cos(A_y(x), A_y(\tilde{x}))
-\]
+1-\cos\left(A_y(x), A_y(\tilde{x})\right)
+$$
 
 The complete objective is:
 
-\[
+$$
 L
 =
 L_{\mathrm{cls}}
 +
 \lambda L_{\mathrm{cons}}
-\]
+$$
 
-with:
-
-```text
-λ = 0.01
-```
+with $\lambda = 0.01$.
 
 ### V2 — Teacher-Anchored Attention Consistency
 
@@ -154,23 +150,26 @@ Diagnostics showed that V1 greatly improved perturbation consistency but also in
 
 V2 therefore introduces a frozen pretrained INTR model as a teacher and anchors the student's clean-image attention to the original model:
 
-\[
+$$
 L_{\mathrm{anchor}}
 =
-1-\cos(A_y^{student}(x), A_y^{teacher}(x))
-\]
+1-\cos\left(
+A_y^{\mathrm{student}}(x),
+A_y^{\mathrm{teacher}}(x)
+\right)
+$$
 
 The complete objective is:
 
-\[
+$$
 L
 =
 L_{\mathrm{cls}}
 +
-0.01L_{\mathrm{cons}}
+0.01 L_{\mathrm{cons}}
 +
-0.0015L_{\mathrm{anchor}}
-\]
+0.0015 L_{\mathrm{anchor}}
+$$
 
 The teacher is frozen throughout training.
 
