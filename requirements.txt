@@ -4,6 +4,7 @@ torchvision
 
 # Numerical and image processing
 numpy
+pandas
 Pillow
 scipy
 opencv-python
