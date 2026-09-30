@@ -12,11 +12,24 @@ In particular, we investigate cases where the model's prediction remains unchang
 
 ---
 
+### Installation
+
+Install the project dependencies with:
+
+```bash
+pip install -r requirements.txt
+```
+
+The original INTR dependency specification is retained separately at
+third_party/INTR/requirements.txt.
+
+---
+
 ## 1. Research Motivation
 
 An intrinsic explanation is directly involved in the model's prediction process, but this does not necessarily guarantee that the explanation is robust.
 
-For an image \(x\) and a background-perturbed version \(\tilde{x}\), we examine both:
+For an image $x$ and a background-perturbed version $\tilde{x}$, we examine both:
 
 - **Prediction robustness:** whether the predicted class remains unchanged.
 - **Explanation robustness:** whether the attention map associated with the original predicted class remains similar.
