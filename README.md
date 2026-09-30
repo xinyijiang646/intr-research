@@ -290,6 +290,23 @@ Contains the experiment, fine-tuning, robustness evaluation, and analysis script
 
 Contains the original INTR implementation used as the research baseline. The original license and citation information are retained in this directory.
 
+### Key Scripts
+
+The repository also contains development and diagnostic scripts used throughout the project. The main scripts corresponding to the final experiments are:
+
+| Script | Purpose |
+|---|---|
+| `src/full_finetune.py` | Paired fine-tuning used for the λ0 control and V1 attention-consistency model |
+| `src/full_finetune_teacher_anchor.py` | V2 teacher-anchored attention-consistency training |
+| `src/final_dual_robustness_experiment.py` | Final robustness evaluation under both background blur and background mask |
+| `src/final_robustness_experiment.py` | Single-perturbation final robustness evaluation |
+| `src/check_attention_homogenization_final.py` | Final cross-image attention homogenization/diversity analysis |
+| `src/check_attention_collapse.py` | Earlier attention-collapse diagnostic used during method development |
+| `src/robustness.py` | Shared inference and attention-robustness utilities |
+| `src/perturbations.py` | Bounding-box-preserving background perturbations |
+| `src/paired_transforms.py` | Shared geometric transformations for paired training images |
+| `src/training_dataset.py` | Dataset utilities for paired fine-tuning |
+
 ---
 
 ## 10. Reproducibility
